@@ -1,0 +1,11 @@
+{
+  "name": "doris",
+  "version": "1.0.0",
+  "description": "Chatbot for the NYC Department of Records",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Kudler <joeento@gmail.com> (http://erickudler.com)",
+  "license": "ISC"
+}
