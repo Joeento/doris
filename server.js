@@ -9,6 +9,8 @@ var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 function callSendAPI(messageData) {
 	request({
@@ -92,7 +94,7 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
 	var data = req.body;
-
+	console.log(data);
 	// Make sure this is a page subscription
 	if (data.object === 'page') {
 
