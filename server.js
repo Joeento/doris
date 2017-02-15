@@ -61,7 +61,7 @@ function receivedMessage(event) {
 
 	var messageId = message.mid;
 
-	var newMessage = messages[index];;
+	var newMessage = messages[index];
 	var messageText = '';
 	if (index === false) {
 		index = 1;
@@ -71,9 +71,11 @@ function receivedMessage(event) {
 		newMessage.answer(message.text, function(id, prevId, callback){
 			index = id;
 			sendTextMessage(senderID, newMessage.reply);
-
-			newMessage = messages[index];
-			sendTextMessage(senderID, newMessage.question);
+			if (index) {
+				newMessage = messages[index];
+				sendTextMessage(senderID, newMessage.question);
+			}
+			
 		});
 		
 	}
