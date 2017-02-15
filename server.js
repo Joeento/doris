@@ -10,7 +10,7 @@ var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
-var index = 0;
+var index = false;
 var state = 'q';
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,9 +61,11 @@ function receivedMessage(event) {
 
 	var messageId = message.mid;
 
-	var newMessage = messages[index];
+	var newMessage ;
 	var messageText = '';
-	if (index === 0) {
+	if (index === false) {
+		index = 1;
+		newMessage = messages[index];
 		sendTextMessage(senderID, newMessage.question);
 	} else {
 		newMessage.answer(message.text, function(id, prevId, callback){
