@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.1",
-    "conversational-js": "git+ssh://git@github.com/Joeento/conversational-js.git",
+    "conversational-js": "git+https://github.com/Joeento/conversational-js.git",
     "express": "^4.14.1",
     "request": "^2.79.0"
   }
