@@ -67,6 +67,8 @@ function receivedMessage(event) {
 		sendTextMessage(senderID, newMessage.question);
 	} else if (state === 'a') {
 		newMessage.answer(message.text, function(id, prevId, callback){
+			index = id;
+			state = 'q';
 			sendTextMessage(senderID, newMessage.reply);
 		});
 		
