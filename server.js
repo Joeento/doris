@@ -70,6 +70,8 @@ function receivedMessage(event) {
 		newMessage.answer(message.text, function(id, prevId, callback){
 			index = id;
 			sendTextMessage(senderID, newMessage.reply);
+			
+			newMessage = messages[index];
 			sendTextMessage(senderID, newMessage.question);
 		});
 		
