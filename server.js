@@ -4,7 +4,7 @@ var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
 var request    = require('request');
-var messages   = require('messages'  );
+var messages   = require('./messages');
 
 var port = process.env.PORT || 3000;
 
