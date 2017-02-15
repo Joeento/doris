@@ -61,7 +61,7 @@ function receivedMessage(event) {
 
 	var messageId = message.mid;
 
-	var newMessage ;
+	var newMessage = messages[index];;
 	var messageText = '';
 	if (index === false) {
 		index = 1;
