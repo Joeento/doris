@@ -3,11 +3,15 @@
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
-var request = require('request');
+var request    = require('request');
+var messages   = require('messages'  );
 
 var port = process.env.PORT || 3000;
 
 var router = express.Router();
+
+var index = 1;
+var state = 'q';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,11 +35,6 @@ function callSendAPI(messageData) {
 			console.error(error);
 		}
 	});
-}
-
-
-function sendGenericMessage(recipientId, messageText) {
-  // To be expanded in later sections
 }
 
 function sendTextMessage(recipientId, messageText) {
@@ -62,23 +61,17 @@ function receivedMessage(event) {
 
 	var messageId = message.mid;
 
-	var messageText = message.text;
-	var messageAttachments = message.attachments;
-
-	if (messageText) {
-
-    // If we receive a text message, check to see if it matches a keyword
-    // and send back the example. Otherwise, just echo the text we received.
-		switch (messageText) {
-		case 'generic':
-			sendGenericMessage(senderID);
-			break;
-		default:
-			sendTextMessage(senderID, messageText);
-		}
-	} else if (messageAttachments) {
-		sendTextMessage(senderID, 'Message with attachment received');
+	var newMessage = messages[index];
+	var messageText = '';
+	if (state === 'q') {
+		sendTextMessage(senderID, messageText);
+	} else if (state === 'a') {
+		newMessage.answer(message.text, function(id, prevId, callback){
+			sendTextMessage(senderID, newMessage.reply);
+		});
+		
 	}
+	
 }
 
 app.get('/webhook', function(req, res) {
@@ -91,6 +84,7 @@ app.get('/webhook', function(req, res) {
 		res.sendStatus(403);
 	}
 });
+
 
 app.post('/webhook', function (req, res) {
 	
