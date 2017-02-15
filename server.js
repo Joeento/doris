@@ -64,7 +64,7 @@ function receivedMessage(event) {
 	var newMessage = messages[index];
 	var messageText = '';
 	if (state === 'q') {
-		sendTextMessage(senderID, messageText);
+		sendTextMessage(senderID, newMessage.q);
 	} else if (state === 'a') {
 		newMessage.answer(message.text, function(id, prevId, callback){
 			sendTextMessage(senderID, newMessage.reply);
